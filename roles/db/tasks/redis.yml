@@ -1,4 +1,4 @@
-# file: roles/webtier/tasks/redis.yml
+# file: roles/db/tasks/redis.yml
 - name: Install redis
   tags: redis
   yum: name=redis state=installed enablerepo=remi

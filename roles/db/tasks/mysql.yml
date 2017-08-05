@@ -1,4 +1,4 @@
-# file: roles/dbtier/tasks/mysql.yml
+# file: roles/db/tasks/mysql.yml
 - name: Install package for MySQL community edition repository
   tags: mysql
   yum:
