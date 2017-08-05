@@ -1,0 +1,22 @@
+
+- name: Install nginx
+  tags: nginx
+  apt: name=nginx state=installed
+
+
+- name: Make sure nginx is running and is started on boot
+  tags: nginx
+  service: name=nginx state=started enabled=yes
+
+
+#- name: Make sure nginx is configured
+#  tags: nginx
+#  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+#  notify:
+#    - Restart nginx
+
+- name: Configure nginx vhosts
+  template: src=default.conf dest=/etc/nginx/sites-available/default
+  notify:
+    - Restart php-fpm (Debian)
+    - Restart nginx

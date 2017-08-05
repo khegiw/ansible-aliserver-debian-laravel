@@ -1,0 +1,40 @@
+
+- name: Make sure epel-repository is installed
+  yum: name=epel-release state=installed
+  tags: epel
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+- include: remi.yml
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+- name: Upgrade all packages
+  yum: name=* state=latest
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+- name: Upgrade all packages
+  apt: upgrade=full update_cache=yes
+  ignore_errors: yes
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+
+
+- name: Install common package
+  apt: name={{ item }} state=installed
+  tags: php
+  with_items:
+    - git
+    - tmux
+    - vim
+    - curl
+    - wget
+    - zip
+    - unzip
+    - htop
+
+
+- include: ntp.yml
+
+- include: cron-apt.yml
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- include: uninstall.yml

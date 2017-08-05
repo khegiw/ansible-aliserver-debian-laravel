@@ -1,0 +1,13 @@
+# file: roles/webtier/handlers/main.yml
+- name: Restart nginx
+  service: name=nginx state=restarted
+
+- name: Restart php-fpm
+  service: name=php-fpm state=restarted
+
+- name: Restart php-fpm (Debian)
+  service: name=php5-fpm state=restarted
+
+
+- name: artisan config:cache
+  shell: php /var/www/web/artisan config:clear

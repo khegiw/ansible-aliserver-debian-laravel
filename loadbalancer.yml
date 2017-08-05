@@ -1,0 +1,8 @@
+# file: webservers.yml
+- hosts: aliserver-load
+  sudo: yes
+  user: root
+  roles:
+    - common
+    - loadbalancer
+#    - custom

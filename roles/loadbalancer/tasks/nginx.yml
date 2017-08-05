@@ -1,0 +1,14 @@
+
+- name: Install nginx
+  tags: nginx
+  apt: name=nginx state=installed
+
+
+- name: Make sure nginx is running and is started on boot
+  tags: nginx
+  service: name=nginx state=started enabled=yes
+
+- name: Configure nginx vhosts
+  template: src=default.conf dest=/etc/nginx/sites-available/default
+  notify:
+    - Restart nginx

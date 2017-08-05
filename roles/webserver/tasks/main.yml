@@ -1,0 +1,4 @@
+- include: nginx.yml
+- include: php5.yml
+- include: composer.yml
+- include: laravel.yml

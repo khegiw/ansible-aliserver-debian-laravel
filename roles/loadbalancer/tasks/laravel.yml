@@ -1,0 +1,14 @@
+- stat: path=/var/www/web
+  register: p
+
+- debug: msg="Path exists and is a directory"
+  when: p.stat.isdir is defined and p.stat.isdir
+
+- name: install laravel
+  shell: cd /var/www && composer create-project --prefer-dist laravel/laravel web
+  when: not p.stat.isdir is defined
+
+- name: change web owner
+  shell: cd /var/www && chown -R www-data:www-data web/
+  when: p.stat.isdir is defined and p.stat.isdir
+

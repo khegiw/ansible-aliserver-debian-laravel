@@ -1,0 +1,8 @@
+# file: webservers.yml
+- hosts: aliserver-db
+  sudo: yes
+  user: root
+  roles:
+    - common
+    - db
+#    - custom

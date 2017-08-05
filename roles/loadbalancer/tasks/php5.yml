@@ -1,0 +1,18 @@
+
+- name: Install PHP and extensions
+  apt: name={{ item }} state=installed
+  tags: php
+  with_items:
+    - php5
+    - php5-fpm
+    - php5-mysql
+    - php5-mcrypt
+    - php5-gd
+    - php5-curl
+    - mcrypt
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: enable php5 mcrypt module
+  shell: php5enmod mcrypt
+  args:
+    creates: /etc/php5/cli/conf.d/20-mcrypt.ini

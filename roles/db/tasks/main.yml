@@ -1,0 +1,4 @@
+# file: roles/dbtier/tasks/main.yml
+#- include: mysql.yml
+- include: redis.yml
+#- include: firewalld.yml
