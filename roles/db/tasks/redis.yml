@@ -18,3 +18,11 @@
   tags: redis
   service: name=redis-server state=started enabled=yes
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Set redis bind address
+  lineinfile:
+    dest: /etc/redis/redis.conf
+    regexp: "^bind"
+    line: "bind 127.0.0.1 47.88.221.217"
+    state: present
+  notify: restart redis

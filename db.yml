@@ -3,6 +3,6 @@
   sudo: yes
   user: root
   roles:
-    - common
+#    - common
     - db
 #    - custom
