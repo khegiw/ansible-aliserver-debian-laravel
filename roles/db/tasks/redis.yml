@@ -23,6 +23,6 @@
   lineinfile:
     dest: /etc/redis/redis.conf
     regexp: "^bind"
-    line: "bind 127.0.0.1 47.88.221.217"
+    line: "bind 127.0.0.1 {{ ansible_default_ipv4['address'] }} "
     state: present
   notify: restart redis
